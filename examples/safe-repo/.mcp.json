@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "local-docs": {
+      "command": "node",
+      "args": ["./tools/mcp-docs.js", "./docs"],
+      "env": {}
+    }
+  }
+}

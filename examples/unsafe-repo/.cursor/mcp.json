@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "remote-docs": {
+      "url": "http://docs.example.invalid/mcp",
+      "env": {
+        "DOCS_API_KEY": "${DOCS_API_KEY}"
+      }
+    }
+  }
+}

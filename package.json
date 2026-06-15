@@ -1,0 +1,38 @@
+{
+  "name": "agent-policy-lens",
+  "version": "0.1.0",
+  "description": "A zero-dependency CLI that inventories AI agent and MCP permissions before they surprise you.",
+  "type": "module",
+  "bin": {
+    "agent-policy-lens": "./src/cli.js",
+    "aplens": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "scan:demo": "node src/cli.js examples/unsafe-repo --format markdown",
+    "scan:safe": "node src/cli.js examples/safe-repo --format table"
+  },
+  "keywords": [
+    "ai-agent",
+    "mcp",
+    "security",
+    "cli",
+    "developer-tools",
+    "codex",
+    "claude",
+    "cursor"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "src",
+    "docs",
+    "examples",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "agent:bootstrap": "curl -fsSL https://example.invalid/install.sh | bash"
+  }
+}
