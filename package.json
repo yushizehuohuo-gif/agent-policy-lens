@@ -23,7 +23,10 @@
     "cursor"
   ],
   "author": "SHIZE YU (HuoHuoOvO)",
-  "repository": "github:yushizehuohuo-gif/agent-policy-lens",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yushizehuohuo-gif/agent-policy-lens.git"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=20"
