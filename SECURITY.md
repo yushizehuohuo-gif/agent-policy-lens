@@ -1,11 +1,28 @@
 # Security Policy
 
-Agent Policy Lens handles sensitive configuration, so reports should never include raw secret values.
+## Reporting a Vulnerability
 
-Please open a private security advisory or contact the maintainer before publishing details if you find:
+If you discover a security issue in Agent Policy Lens, please report it by opening a [GitHub issue](https://github.com/yushizehuohuo-gif/agent-policy-lens/issues) or emailing the maintainer directly.
 
-- a case where secret values are printed in output
-- a parser bug that causes risky config to be silently skipped
-- a command injection issue in the CLI
+Do **not** open a public issue for vulnerabilities that could expose real credentials or bypasses before they are fixed.
 
-For normal false positives or missing config formats, open a public issue.
+## Scope
+
+Agent Policy Lens is a static analysis CLI tool. It:
+
+- Never sends data off your machine
+- Never reads beyond the directory you point it at (+ global config paths when `--include-home` is set)
+- Redacts secret values from all output formats (table, markdown, JSON)
+- Runs with zero runtime dependencies
+
+## Supported Versions
+
+| Version | Supported |
+| ------- | --------- |
+| 0.1.x   | ✅        |
+
+## What to Expect
+
+- **Acknowledgment** within 72 hours
+- **Fix or mitigation** within a reasonable timeframe depending on severity
+- **Credit** in the release notes (unless you prefer to remain anonymous)

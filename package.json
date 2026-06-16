@@ -22,7 +22,8 @@
     "claude",
     "cursor"
   ],
-  "author": "",
+  "author": "SHIZE YU (HuoHuoOvO)",
+  "repository": "github:yushizehuohuo-gif/agent-policy-lens",
   "license": "MIT",
   "engines": {
     "node": ">=20"
