@@ -1,8 +1,25 @@
 # Agent Policy Lens 🔍
 
-> **A zero-dependency CLI that inventories AI agent and MCP permissions before they surprise you.**
+<p align="center">
+  <img src="https://img.shields.io/npm/v/agent-policy-lens?style=flat-square&color=B31E3D" alt="npm version">
+  <img src="https://img.shields.io/github/stars/yushizehuohuo-gif/agent-policy-lens?style=flat-square&color=B31E3D" alt="Stars">
+  <img src="https://img.shields.io/github/license/yushizehuohuo-gif/agent-policy-lens?style=flat-square&color=B31E3D" alt="License: MIT">
+  <img src="https://img.shields.io/npm/dm/agent-policy-lens?style=flat-square&color=B31E3D" alt="Downloads">
+  <img src="https://img.shields.io/badge/dependencies-zero-brightgreen?style=flat-square" alt="Zero dependencies">
+  <img src="https://img.shields.io/badge/node-%3E%3D20-blue?style=flat-square" alt="Node >=20">
+</p>
 
-`agent-policy-lens` scans a repo for AI agent surfaces — MCP servers, agent instruction files, package scripts, and `.env` files — and turns scattered config into a short risk report you can read in a pull request.
+<p align="center">
+  <b>A zero-dependency CLI that inventories AI agent and MCP permissions before they surprise you.</b><br>
+  <sub>零依赖 CLI 工具 — 在 AI Agent 和 MCP 权限变成安全隐患之前，先把它们列出来。</sub>
+</p>
+
+<p align="center">
+  <i>Demo GIF — coming soon / 演示 GIF 即将添加</i><br>
+  <!-- Replace with: <img src="demo.gif" width="700" alt="agent-policy-lens demo"> -->
+</p>
+
+---
 
 ```bash
 npx agent-policy-lens .
@@ -10,20 +27,22 @@ npx agent-policy-lens .
 
 ---
 
-## Why this exists
+## Why this exists · 为什么需要它
 
-AI coding tools are becoming part of the development environment, but their permissions are easy to miss in review:
+AI coding tools are becoming part of the development environment, but their permissions are scattered across multiple config formats — easy to miss in review:
 
-- one MCP server can receive a repo path **and** a token
-- one package script can pipe a remote installer into a shell
-- one agent instruction file can normalize auto-approval
-- one `.env` file can accidentally turn a demo into a credential leak
+- One MCP server can receive a repo path **and** an API token
+- One package script can pipe a remote installer into a shell
+- One agent instruction file can normalize auto-approval
+- One `.env` file can accidentally turn a demo into a credential leak
 
-This tool gives teams a small, diffable "agent permission inventory" before those configs become invisible background noise.
+AI 编程工具正在成为开发环境的一部分，但它们的权限分散在多种配置格式中，Code review 时很容易遗漏。
+
+This tool gives teams a single, diffable "agent permission inventory" before those configs become invisible background noise.
 
 ---
 
-## Demo
+## Demo · 演示
 
 ```bash
 npx agent-policy-lens examples/unsafe-repo
@@ -61,15 +80,15 @@ Findings
    Instruction asks for automatic approval
 ```
 
-In one scan, it caught: remote scripts piped into shells, plaintext HTTP agent endpoints, secrets granted to agents, unpinned runners, broad filesystem access, and auto-approval — across MCP configs, instruction files, and package scripts.
+In one scan: remote scripts piped into shells, plaintext HTTP agent endpoints, secrets granted to agents, unpinned runners, broad filesystem access, and auto-approval — across MCP configs, instruction files, and package scripts.
+
+一次扫描就能发现：远程脚本管道注入、明文 HTTP agent 端点、secret 泄露给 agent、未锁定包管理器、宽泛文件系统访问、自动审批。
 
 ---
 
-## What it finds
+## What it finds · 检测范围
 
-Agent Policy Lens inspects:
-
-| Category | Files |
+| Category · 类别 | Files · 文件 |
 |----------|-------|
 | MCP configs | `.mcp.json`, `mcp.json`, `.cursor/mcp.json`, `.vscode/mcp.json`, `claude_desktop_config.json` |
 | Agent instructions | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules`, `.windsurfrules` |
@@ -77,36 +96,56 @@ Agent Policy Lens inspects:
 | Environment files | `.env*` |
 | Package scripts | agent-related `package.json` scripts |
 
-It flags patterns such as:
+It flags patterns such as / 检测以下模式：
 
-- remote scripts piped into a shell
-- unpinned runtime package runners (`npx`, `uvx`, etc.)
-- broad filesystem access (`/`, `C:\`, `$HOME`, `%USERPROFILE%`)
-- secret-like environment variables granted to an agent
-- possible live secrets in committed config
-- plaintext remote agent endpoints
-- auto-approval or safety-bypass instructions
+- 🚨 Remote scripts piped into a shell — `curl ... | bash`
+- 📦 Unpinned runtime package runners — `npx`, `uvx`, `pipx` without version pins
+- 📂 Broad filesystem access — `/`, `C:\`, `$HOME`, `%USERPROFILE%`
+- 🔑 Secret-like environment variables granted to an agent
+- 👁️ Possible live secrets in committed config (OpenAI, Anthropic, GitHub, AWS keys)
+- 🌐 Plaintext remote agent endpoints — `http://` instead of `https://`
+- ⚡ Auto-approval or safety-bypass instructions
 
 ---
 
-## Usage
+## Install · 安装
 
 ```bash
-agent-policy-lens [scan] [path] [options]
+npm install -g agent-policy-lens
 ```
 
-Options:
+Or run without installing:
 
-```text
---format <table|json|markdown>  Output format. Default: table
---out <file>                    Write output to a file
---fail-on <severity|none>       Exit 2 when highest risk reaches this level
---include-home                  Also inspect known global agent config paths
---max-depth <number>            Directory walk depth. Default: 6
--h, --help                      Show help
+```bash
+npx agent-policy-lens .
 ```
 
-Common commands:
+**Zero dependencies.** Nothing to install beyond Node.js ≥ 20.
+
+**零依赖。** 除了 Node.js ≥ 20 之外什么都不需要。
+
+---
+
+## Usage · 使用
+
+```bash
+agent-policy-lens [path] [options]
+# Short alias:
+aplens [path] [options]
+```
+
+### Options
+
+| Option | Description |
+|--------|-------------|
+| `--format <table\|json\|markdown>` | Output format. Default: `table` |
+| `--out <file>` | Write output to a file |
+| `--fail-on <severity\|none>` | Exit code 2 when highest risk reaches this level |
+| `--include-home` | Also inspect known global agent config paths |
+| `--max-depth <number>` | Directory walk depth. Default: `6` |
+| `-h, --help` | Show help |
+
+### Common Commands · 常用命令
 
 ```bash
 # Quick scan
@@ -115,24 +154,22 @@ agent-policy-lens .
 # Markdown report for PRs
 agent-policy-lens . --format markdown --out agent-policy-report.md
 
-# Block PRs with high+ findings
+# Block CI if high+ findings
 agent-policy-lens . --fail-on high
 
-# Include global configs, JSON output
+# Include global configs + JSON for bots
 agent-policy-lens . --include-home --format json
 ```
 
-**Short alias:** `aplens` works everywhere `agent-policy-lens` does.
-
 ---
 
-## Output formats
+## Output Formats · 输出格式
 
-| Format | Best for |
+| Format | Best for · 最适合 |
 |--------|----------|
-| `table` (default) | Humans in the terminal |
-| `markdown` | PR artifacts, GitHub comments |
-| `json` | Bots, CI pipelines |
+| `table` (default) | Humans in the terminal · 终端人类阅读 |
+| `markdown` | PR artifacts, GitHub comments · PR 产物 |
+| `json` | Bots, CI pipelines · 自动化管道 |
 
 ```bash
 agent-policy-lens . --format markdown --out agent-policy-report.md
@@ -140,7 +177,7 @@ agent-policy-lens . --format markdown --out agent-policy-report.md
 
 ---
 
-## Pull request check
+## CI Integration · CI 集成
 
 Add this workflow to scan every PR:
 
@@ -170,7 +207,7 @@ jobs:
 
 ---
 
-## Rule philosophy
+## Rule Philosophy · 规则理念
 
 Agent Policy Lens is intentionally opinionated and explainable. It does **not** claim every finding is a vulnerability. It points at permission surfaces that deserve a human sentence in review:
 
@@ -184,17 +221,32 @@ See [docs/rules.md](docs/rules.md) for the full rule set.
 
 ---
 
-## Roadmap
+## Why Zero Dependencies · 为什么零依赖
 
-- [ ] SARIF output for GitHub code scanning
-- [ ] Repo baseline support for existing accepted risks
-- [ ] More global config formats (Codex, Claude, Cursor, Windsurf, VS Code)
-- [ ] First-class MCP server allowlists
-- [ ] PR comment mode
+- **Auditable** — Every line of code is in this repo. No supply chain to trust.
+- **Fast** — `npx agent-policy-lens .` completes in under a second.
+- **CI-native** — No install step beyond Node.js. Works on every runner.
+- **Secure** — A security tool shouldn't depend on 500 packages you haven't reviewed.
+
+**可审计** — 所有代码都在这个仓库里，没有需要信任的供应链。
+**快** — `npx agent-policy-lens .` 一秒内完成。
+**CI 原生** — 不需要额外安装，所有 runner 都能跑。
+**安全** — 安全工具本身不应该依赖 500 个你没审查过的包。
 
 ---
 
-## Development
+## Roadmap
+
+- [ ] SARIF output for GitHub code scanning
+- [ ] Repo baseline support (`.agent-policy-lens.json` for accepted risks)
+- [ ] More global config formats (Codex, Claude, Cursor, Windsurf, VS Code)
+- [ ] First-class MCP server allowlists
+- [ ] PR comment mode (post findings directly to PR)
+- [ ] Pre-commit hook
+
+---
+
+## Development · 开发
 
 ```bash
 npm test
@@ -202,4 +254,22 @@ node src/cli.js examples/unsafe-repo
 node src/cli.js examples/safe-repo
 ```
 
-This project has **zero runtime dependencies.**
+---
+
+## Related · 相关资源
+
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) — The protocol this tool helps secure
+- [Hermes Agent Guide](https://github.com/yushizehuohuo-gif/hermes-agent-guide) — AGENTS.md best practices for Windows
+- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) — Broader LLM security context
+
+---
+
+## License
+
+MIT © [SHIZE YU (HuoHuoOvO)](https://github.com/yushizehuohuo-gif)
+
+---
+
+<p align="center">
+  <sub>Found a bug? Missing a detection? <a href="https://github.com/yushizehuohuo-gif/agent-policy-lens/issues">Open an issue</a></sub>
+</p>
