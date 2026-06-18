@@ -10,7 +10,8 @@
 </p>
 
 <p align="center">
-  <b>A zero-dependency CLI that inventories AI agent and MCP permissions before they surprise you.</b><br>
+  <b>See what your AI agents can run, read, and leak.</b><br>
+  <sub>A zero-dependency CLI that inventories AI agent and MCP permissions before they surprise you.</sub><br>
   <sub>零依赖 CLI 工具 — 在 AI Agent 和 MCP 权限变成安全隐患之前，先把它们列出来。</sub>
 </p>
 
