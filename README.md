@@ -15,8 +15,7 @@
 </p>
 
 <p align="center">
-  <i>Demo GIF — coming soon / 演示 GIF 即将添加</i><br>
-  <!-- Replace with: <img src="demo.gif" width="700" alt="agent-policy-lens demo"> -->
+  <img src="assets/demo.svg" width="760" alt="Agent Policy Lens demo output">
 </p>
 
 ---

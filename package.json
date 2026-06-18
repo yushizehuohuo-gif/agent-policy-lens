@@ -34,6 +34,7 @@
   "files": [
     "src",
     "docs",
+    "assets",
     "examples",
     "README.md",
     "SECURITY.md",

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520" role="img" aria-label="Agent Policy Lens terminal demo">
+  <rect width="980" height="520" rx="18" fill="#111318"/>
+  <rect x="0" y="0" width="980" height="46" rx="18" fill="#1d2028"/>
+  <circle cx="28" cy="23" r="7" fill="#ff5f57"/>
+  <circle cx="51" cy="23" r="7" fill="#ffbd2e"/>
+  <circle cx="74" cy="23" r="7" fill="#28c840"/>
+  <text x="490" y="29" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#a9b1c3">agent-policy-lens</text>
+
+  <text x="34" y="86" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" fill="#f4f7fb">$ npx agent-policy-lens examples/unsafe-repo</text>
+  <text x="34" y="128" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" font-weight="700" fill="#ffffff">Agent Policy Lens</text>
+  <text x="34" y="162" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" fill="#a9b1c3">Scanned files: 4   Surfaces: 5   Findings: 10</text>
+  <text x="34" y="194" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" fill="#ff6b7a">Highest risk: CRITICAL</text>
+
+  <rect x="34" y="224" width="912" height="48" rx="8" fill="#22171b" stroke="#7f1d2d"/>
+  <text x="54" y="254" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#ff8ea0">CRITICAL</text>
+  <text x="154" y="254" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#f4f7fb">REMOTE_INSTALLER_PIPE</text>
+  <text x="392" y="254" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#a9b1c3">curl ... | bash in .mcp.json:13</text>
+
+  <rect x="34" y="286" width="912" height="48" rx="8" fill="#211d12" stroke="#7c5d13"/>
+  <text x="54" y="316" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#ffd166">HIGH</text>
+  <text x="154" y="316" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#f4f7fb">BROAD_FILESYSTEM_ACCESS</text>
+  <text x="430" y="316" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#a9b1c3">filesystem server is scoped to /</text>
+
+  <rect x="34" y="348" width="912" height="48" rx="8" fill="#211d12" stroke="#7c5d13"/>
+  <text x="54" y="378" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#ffd166">HIGH</text>
+  <text x="154" y="378" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#f4f7fb">SECRET_ENV_GRANTED</text>
+  <text x="386" y="378" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#a9b1c3">GITHUB_TOKEN is passed to an agent</text>
+
+  <rect x="34" y="430" width="912" height="42" rx="8" fill="#17211a" stroke="#2e7d4f"/>
+  <text x="54" y="457" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#83e6a0">Fix hints included for every finding. JSON and Markdown output available.</text>
+</svg>
